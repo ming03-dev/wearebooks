@@ -41,14 +41,14 @@
  }
 
  .mypage-topbar {
-     background: #bfe7f6;
+     background: #de9961;
      border-radius: 15px;
      padding: 10px 14px;
      display: flex;
      width: 100%;
      justify-content: space-between;
      align-items: center;
-     border: 1px solid #a9dff2;
+     border: 1px solid #de9961;
      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
  }
 
@@ -60,6 +60,7 @@
  .mypage-topbar .msg {
      font-size: 12px;
      color: var(--muted);
+
  }
 
  .content {
@@ -114,7 +115,7 @@
  }
 
  .menu a.active {
-     background: #e8f6fc;
+     background: lightgray;
      font-weight: 800;
  }
 

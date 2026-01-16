@@ -21,13 +21,7 @@
   gap: 14px;
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-}
+
 
 .label {
   font-size: 13px;
@@ -84,8 +78,12 @@
 }
 
 .btn.primary {
-  border-color: #7fc9ea;
-  background: #bfe7f6;
+  border-color: none;
+  background: #222;
+  color: white;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 15px;
 }
 
 .btn.primary:hover {
@@ -93,12 +91,17 @@
 }
 
 .btn.danger {
-  border-color: #f2c0c0;
-  background: #fff;
+
+  border-color: none;
+  background: white;
+  color: black;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 15px;
 }
 
 .btn.danger:hover {
-  background: #fff3f3;
+  background:gray;
 }
 
 .toast {

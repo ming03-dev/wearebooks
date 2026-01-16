@@ -23,17 +23,18 @@ body {
 }
 
 .site-main {
-  flex: 1;
-  display: flex;
+    flex: 1;
+    display: flex;
 }
 
 .site-footer {
-  height: var(--footer-h);
+    height: var(--footer-h);
 }
 
-html, body{
-     height: 100%;
- }
+html,
+body {
+    min-height: 100%;
+}
 
 
 
@@ -47,18 +48,19 @@ html, body{
         margin-left: 0;
     }
 
-    /* 전체 레이아웃 → 세로로 */
+
+    /* 전체 레이아웃 세로로 */
     .page-layout-inner {
         flex-direction: column;
         padding: 0 15px;
     }
 
-    /* 왼쪽 사이드바 → 사라짐 */
+    /* 왼쪽 사이드바 사라짐 */
     .category-sidebar {
         display: none;
     }
 
-    /* 베스트셀러 → 세로 정렬 */
+    /* 베스트셀러 세로 정렬 */
     .bestseller-layout {
         flex-direction: column;
         padding: 0;
@@ -82,14 +84,19 @@ html, body{
         display: none;
     }
 
-    /* 책 카드 2열 */
+    /* 책 목록 2열 */
     .book-card {
         width: 45%;
     }
 
     /* 버튼 위치 보정 */
-    #prevBtn { left: 5px; }
-    #nextBtn { right: 5px; }
+    #prevBtn {
+        left: 5px;
+    }
+
+    #nextBtn {
+        right: 5px;
+    }
 }
 
 
@@ -113,9 +120,9 @@ body {
     gap: 30px;
 }
 
+
 /* 왼쪽 사이드바 */
 .category-sidebar {
-    position: sticky;
     top: 20px;
     width: 250px;
     background: #fff;
@@ -129,6 +136,7 @@ body {
 .category-sidebar h3 {
     font-size: 20px;
     margin-bottom: 15px;
+    padding-left: 10px;
 }
 
 .category-sidebar ul {
@@ -148,12 +156,14 @@ body {
     background: #f0f0f0;
 }
 
+
 /* 오른쪽 콘텐츠 */
 .content-area {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
+
 
 /* 공통 박스 */
 .content-box {
@@ -166,6 +176,7 @@ body {
     padding: 40px;
     border: 1px solid var(--border);
 }
+
 
 /* 베스트셀러 부분 */
 .bestseller-box {
@@ -187,6 +198,7 @@ body {
     padding: 0 70px;
     align-items: center;
 }
+
 
 /* 왼쪽 베스트 도서 */
 .bestseller-main {
@@ -210,6 +222,7 @@ body {
 .bestseller-main img {
     width: 180px;
     height: 260px;
+    /* 부모 요소 내에 비율을 유지하면서 한 쪽 축을 꽉 차게 늘려서 배치 */
     object-fit: cover;
     border-radius: 5px;
 }
@@ -228,10 +241,11 @@ body {
     margin-top: 0;
 }
 
+
 /* 오른쪽 미리보기 */
 .bestseller-preview-wrapper {
-    overflow: hidden;
     /* 밖으로 넘치는 카드 숨기기 */
+    overflow: hidden;
     padding-right: 20px;
     flex: 1;
 }
@@ -253,39 +267,42 @@ body {
     border-radius: 5px;
 }
 
-/* 베스트셀러 버튼 */
+
+/* '이전', '다음' 버튼 */
 .bestseller-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 5;
-    background: #222;
-    color: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 50%;
+    z-index: 10;    /* 다른 요소 위에 보이게 */
     width: 45px;
     height: 45px;
+    border: none;
     cursor: pointer;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
-    transition: background 0.2s;
+    font-size: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 #prevBtn {
+    background: url("../../assets/imgs/icons/arrow-left.png") no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
     left: 20px;
 }
 
 #nextBtn {
+    background: url("../../assets/imgs/icons/arrow-right.png") no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
     right: 20px;
 }
 
 .bestseller-btn:hover {
     background: #555;
-    transform: translateY(-50%) scale(1);
 }
+
 
 /* 책 목록 부분*/
 .book-section {
@@ -307,7 +324,7 @@ body {
 .book-list {
     display: flex;
     gap: 15px;
-    flex-wrap: wrap;
+    flex-wrap: wrap;    /* 요소들의 총 넓이가 크다면 줄바꿈함 */
     justify-content: center;
 }
 
@@ -337,6 +354,7 @@ body {
     text-align: center;
 }
 
+
 /* 더보기 버튼 */
 .more-btn {
     padding: 8px 15px;
@@ -348,4 +366,29 @@ body {
     margin-left: auto;
     margin-top: 20px;
     display: block;
+}
+
+
+/* 맨 위 이동 버튼 */
+#toTopBtn {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: #222;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+    display: none;      /* 처음엔 안 보이게 */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#toTopBtn:hover {
+    background: #555;
 }
