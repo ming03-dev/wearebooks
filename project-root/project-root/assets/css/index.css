@@ -69,16 +69,15 @@
 }
 
 /* 검색창도 반응형 폭 */
-.search input[type='text'] {
+.search input[type="text"] {
   width: clamp(160px, 35vw, 360px);
   height: 36px;
   padding: 0 10px;
 
   border: none;
-  border-bottom: 1.5px solid #de9961;
 
-  background-color: transparent;
-  color: #f3f3f3;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.9);
 
   outline: none;
   /* 포커스 기본 제거 */
@@ -125,7 +124,7 @@
 }
 
 @media (max-width: 840px) {
-  .search input[type='text'] {
+  .search input[type="text"] {
     width: 220px;
   }
 }
