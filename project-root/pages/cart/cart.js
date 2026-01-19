@@ -56,8 +56,6 @@ if (!items.length) {
     const row = tbody.insertRow();
     row.dataset.id = item.id;
 
-    resetCheckAllUI();
-
     // 체크박스
     const c0 = row.insertCell();
     c0.innerHTML = `<input type="checkbox" class="row-check">`;
@@ -89,18 +87,10 @@ if (!items.length) {
     c4.className = "row-total-price";
     c4.textContent = (item.price * item.qty).toLocaleString() + "원";
   });
-  function resetCheckAllUI(hasItems) {
-    const checkAll = document.getElementById("checkAll");
-    if (!checkAll) return;
-
-    checkAll.checked = false;
-    checkAll.indeterminate = false;
-    checkAll.disabled = !hasItems; // 상품 없으면 비활성화(선택)
-  }
-
-  resetCheckAllUI(items.length > 0);
-  updateSelectedGrandTotal(); // 처음 진입: 선택 0개니까 0원
 }
+
+// 렌더링 끝난 뒤 "초기 상태" 고정 (항상 0원 + checkAll 초기화)
+resetCartUIState(items.length > 0); // (checkAll 해제 + 개별 체크 해제 + 0원 갱신)
 
 // 4) 총액 표시(일단 단순 계산)
 // updateGrandTotalAll();
@@ -260,30 +250,33 @@ tbody.addEventListener("change", (e) => {
   }
 });
 
-updateSelectedGrandTotal();
-
-function resetCartUIState() {
-  // 1) 전체선택 체크 해제
+function resetCartUIState(hasItems) {
+  // 1) 전체선택 체크 해제 + 비활성화 처리
   const checkAll = document.getElementById("checkAll");
   if (checkAll) {
     checkAll.checked = false;
     checkAll.indeterminate = false;
-    checkAll.disabled = getCartItems().length === 0; // 원하면 유지
+    checkAll.disabled = !hasItems; // 상품 없으면 비활성화
   }
 
-  // 2) 개별 체크박스들도 전부 해제(있을 때만)
+  // 2) 개별 체크박스 전부 해제
   document.querySelectorAll("#cartTbody .row-check").forEach((cb) => {
     cb.checked = false;
   });
 
-  // 3) 선택 합계 기준이면 0원으로 갱신
-  updateSelectedGrandTotal();
+  // 3) 선택 합계는 무조건 0원으로
+  const el = document.getElementById("grandTotal");
+  if (el) el.textContent = "0원";
+
+  // checkAll UI도 0개 선택 상태로 보정
+  if (checkAll) {
+    checkAll.checked = false;
+    checkAll.indeterminate = false;
+  }
 }
 
-window.addEventListener("pageshow", (e) => {
-  // e.persisted === true 면 bfcache로 복원된 케이스
-  // persisted가 false여도 안전하게 초기화해도 됨
-  resetCartUIState();
+window.addEventListener("pageshow", () => {
+  resetCartUIState(getCartItems().length > 0);
 });
 
 // 메인으로 가기 버튼
@@ -313,18 +306,15 @@ if (btnDelete) {
       return;
     }
 
-    // localStorage에서 선택된 것만 제거
     const cartItems = getCartItems();
     const remainItems = cartItems.filter((it) => !selectedIds.includes(it.id));
     setCartItems(remainItems);
 
-    // 화면에서도 선택된 행 삭제
     selectedIds.forEach((id) => {
       const row = document.querySelector(`#cartTbody tr[data-id="${id}"]`);
       if (row) row.remove();
     });
 
-    // 장바구니가 비었으면 '담은 상품이 없습니다' 행 넣기
     if (remainItems.length === 0) {
       tbody.innerHTML = "";
       const row = tbody.insertRow();
@@ -333,9 +323,6 @@ if (btnDelete) {
       cell.textContent = "담은 상품이 없습니다.";
     }
 
-    // 전체선택 UI 초기화 + 합계 갱신
-    resetCartUIState(); //
-    // 없으면 최소로 이거라도:
-    // updateSelectedGrandTotal();
+    resetCartUIState(getCartItems().length > 0);
   });
 }
