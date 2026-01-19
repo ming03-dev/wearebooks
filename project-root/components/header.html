@@ -1,9 +1,8 @@
 <body>
   <header class="site-header">
-
     <div class="logo">
       <a href="index.html">
-        <img src="assets/imgs/mainLogo.jpg" alt="YES24 로고">
+        <img src="assets/imgs/mainLogo.jpg" alt="YES24 로고" />
       </a>
     </div>
 
@@ -23,21 +22,47 @@
       <!-- 로그인 후 -->
       <div id="userMenu" class="user-menu is-hidden">
         <span id="userHello" class="user-hello"></span>
-        <button id="logoutBtn" class="logout-btn" type="button">로그아웃</button>
+        <button id="logoutBtn" class="logout-btn" type="button">
+          로그아웃
+        </button>
 
         <div id="userIcons" class="right-icons">
-          <a id="myPageLink" class="icon-link" href="pages/myPage/myPage.html" aria-label="마이페이지">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a
+            id="myPageLink"
+            class="icon-link"
+            href="pages/myPage/myPage.html"
+            aria-label="마이페이지"
+          >
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <circle cx="12" cy="8" r="4" />
               <path d="M20 21a8 8 0 0 0-16 0" />
             </svg>
           </a>
 
-          <a id="cartLink" class="icon-link" href="pages/cart/cart.html" aria-label="장바구니">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a
+            id="cartLink"
+            class="icon-link"
+            href="pages/cart/cart.html"
+            aria-label="장바구니"
+          >
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <circle cx="9" cy="20" r="1" />
               <circle cx="17" cy="20" r="1" />
-              <path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" />
+              <path
+                d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"
+              />
             </svg>
           </a>
         </div>
@@ -46,16 +71,34 @@
   </header>
 
   <!-- 로그인 모달 -->
-  <div id="loginModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+  <div
+    id="loginModal"
+    class="modal is-hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="loginModalTitle"
+  >
     <div class="modal__overlay" id="loginModalOverlay"></div>
 
     <div class="modal__content">
       <div class="modal__header">
         <h2 id="loginModalTitle">로그인</h2>
-        <button type="button" class="modal__close" id="loginModalClose" aria-label="닫기">✕</button>
+        <button
+          type="button"
+          class="modal__close"
+          id="loginModalClose"
+          aria-label="닫기"
+        >
+          ✕
+        </button>
       </div>
 
-      <iframe id="loginFrame" class="modal__iframe" src="pages/login/login.html" title="로그인">
+      <iframe
+        id="loginFrame"
+        class="modal__iframe"
+        src="pages/login/login.html"
+        title="로그인"
+      >
       </iframe>
     </div>
   </div>

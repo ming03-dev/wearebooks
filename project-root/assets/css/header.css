@@ -1,34 +1,47 @@
- :root {
-     --blue: #9ed2ee;
-     --text: #111;
-     --muted: #666;
-     --border: #e6e6e6;
-     --header-h: 110px;
-     --shadow: 0 12px 30px rgba(0, 0, 0, .12);
-     --radius: 10px;
-      --footer-h: 120px;
- }
+/* favicon (공통) */
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/assets/imgs/favicon-16x16.png"
+  /
+  > <link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/assets/imgs/favicon-32x32.png"
+  /
+  > :root {
+  --blue: #9ed2ee;
+  --text: #111;
+  --muted: #666;
+  --border: #e6e6e6;
+  --header-h: 110px;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  --radius: 10px;
+  --footer-h: 120px;
+}
 
-html, body{
-     height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 .site-footer {
   height: var(--footer-h);
 }
 
+* {
+  box-sizing: border-box;
+}
 
- * {
-     box-sizing: border-box;
- }
+body {
+  margin: 0;
 
- body {
-     margin: 0;
-
-     color: var(--text);
-     background: #fff;
-         min-height: 100vh;
- }
+  color: var(--text);
+  background: #fff;
+  min-height: 100vh;
+}
 /* ================= HEADER ================= */
 
 /* 헤더 전체 */
@@ -41,7 +54,6 @@ header.site-header {
   padding: 0 18px;
   border-bottom: 1px solid var(--border);
   gap: 12px;
-
 }
 
 /* 로고 영역 */
@@ -57,7 +69,6 @@ header.site-header {
   width: auto;
   display: block;
   margin-left: 15px;
-  
 }
 
 /* 네비게이션 감싸는 영역 (스크롤 담당) */
@@ -65,7 +76,6 @@ header.site-header {
   flex: 0 0 auto;
   overflow-x: auto;
   overflow-y: hidden;
-  
 }
 
 /* nav-wrap 스크롤바 스타일 */
@@ -90,7 +100,6 @@ nav.nav-bar {
   justify-content: space-around;
   gap: 28px;
   white-space: nowrap;
-  
 }
 
 /* 네비게이션 링크 */
@@ -102,8 +111,7 @@ nav.nav-bar {
   padding: 12px 15px;
   border-radius: 8px;
   white-space: nowrap;
-       font-family: "ChnDefault", "HanwhaGothic", sans-serif;
-  
+  font-family: "ChnDefault", "HanwhaGothic", sans-serif;
 }
 
 .nav-link:hover {
@@ -150,13 +158,15 @@ nav.nav-bar {
 }
 
 .page-layout {
-    display: flex;
-    width: 100%;
-    padding: 25px 0;
-    background-color: #f3f3f3;
+  display: flex;
+  width: 100%;
+  padding: 25px 0;
+  background-color: #f3f3f3;
 }
 
-.is-hidden { display: none !important; }
+.is-hidden {
+  display: none !important;
+}
 
 .right-area {
   display: flex;
@@ -222,24 +232,24 @@ nav.nav-bar {
   border: 0;
 }
 
-#loginModalTitle{
-    font-size: 18px;
+#loginModalTitle {
+  font-size: 18px;
 }
 
-.user-menu{
-  display:flex;
-  align-items:center;
+.user-menu {
+  display: flex;
+  align-items: center;
   /* justify-content: space-between; */
-  gap:12px;
+  gap: 12px;
 }
 
-.user-hello{
-  font-size:14px;
+.user-hello {
+  font-size: 14px;
   width: 110px;
   text-align: right;
 }
 
-.logout-btn{
+.logout-btn {
   border: none;
   background: transparent;
   cursor: pointer;
@@ -248,7 +258,7 @@ nav.nav-bar {
   width: 70px;
 }
 
-.logout-btn:hover{
+.logout-btn:hover {
   text-decoration: underline;
 }
 
@@ -262,12 +272,14 @@ nav.nav-bar {
   justify-content: center;
 }
 
-.auth-modal.is-hidden { display: none !important; }
+.auth-modal.is-hidden {
+  display: none !important;
+}
 
 .auth-modal__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .auth-modal__content {
@@ -300,7 +312,6 @@ nav.nav-bar {
   border: 0;
 }
 
-
-.loginModal{
+.loginModal {
   height: 100%;
 }
