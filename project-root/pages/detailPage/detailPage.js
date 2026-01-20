@@ -1,84 +1,113 @@
+//localStorage.getItem("cartItems")
 
-// 책(상품) 정보: 바뀌지 않는 값
+// detailPage.js
+const books = window.books; // books.js가 먼저 로드되어 있어야 함
 
-const testbook = {
-    id: "0001",
-    title: "테스트북",
-    price: 15000,
-    img: "../../assets/imgs/book1.jpg",
-    detailUrl: "detailPage.html?id=0001",
-    category: "국내도서",
-    author: "홍길동",
-    stock: 100
-};
+const CART_KEY = "cartItems";
 
-const CART_KEY = "cartItems";// key 상수
+const won = (n) => Number(n).toLocaleString() + "원";
 
-function getCartItems() {//장바구니 전체 읽기
+function getBookIdFromUrl() {
+    return new URLSearchParams(location.search).get("id");
+}
+
+function getBookById(id) {
+    return books.find((b) => b.id === id) ?? null;
+}
+
+// ---- cart storage
+function getCartItems() {
     try {
-        const raw = localStorage.getItem(CART_KEY);//객체의 아이템들 문자열로 저장
-        const arr = raw ? JSON.parse(raw) : [];//저장된게 있으면 객체로 저장
+        const raw = localStorage.getItem(CART_KEY);
+        const arr = raw ? JSON.parse(raw) : [];
         return Array.isArray(arr) ? arr : [];
     } catch {
         return [];
     }
 }
 
-function setCartItems(items) {// 장바구니 전체 저장
+function setCartItems(items) {
     localStorage.setItem(CART_KEY, JSON.stringify(items));
-}
-
-function clearCart() { //장바구니 초기화(비우기)
-    localStorage.removeItem(CART_KEY);
 }
 
 function addToCartOnce(book) {
     const items = getCartItems();
 
-    const exists = items.some(it => it.id === book.id);
-    if (exists) {
-        console.log("이미 담김");
-        return { ok: false, reason: "EXISTS" };
+    const exists = items.some((it) => it.id === book.id);
+    if (exists) return { ok: false, reason: "EXISTS" };
+
+    items.push({ ...book, qty: 1 });
+    setCartItems(items);
+
+    return { ok: true };
+}
+
+// ---- render
+function render(book) {
+    document.querySelector(".book-title").textContent = book.title;
+
+    const cover = document.querySelector(".book-cover");
+    cover.src = book.image;
+    cover.alt = book.title;
+
+    // 페이지 제목
+    document.title = `${book.title} 상세페이지`;
+
+    // 가격
+    const priceLine = document.querySelector(".mini-info > div:nth-child(1)");
+    if (priceLine) priceLine.textContent = `가격: ${won(book.price)}`;
+
+    // 소개 영역
+    const intro = document.querySelector("#intro .muted");
+    intro.textContent = "〈마스터셰프 코리아2〉의 우승자이자 〈흑백요리사〉 〈냉장고를 부탁해〉 등에 출연한 셰프 최강록의 자전적 에세이. 음식, 요리, 식당, 요리사라는 네 가지 키워드로 지난날과 지금의 일상을 담았다. 요리사라는 직업인으로서, 먹는 것을 좋아하는 평범한 생활인으로서 잔잔하면서도 솔직하게 써내려간 기쁨과 슬픔, 희망과 걱정이 독자들의 몰입과 공감을 높인다. 이 책 곳곳에 돋보이는 최강록 특유의 유머 사이에 가슴 찡한 장면들이 반짝인다. 이 진솔한 에세이를 읽다보면 음식과 요리란 무엇인지, 일과 직업이란 무슨 의미인지 생각해보게 될 것이다.〈마스터셰프 코리아2〉의 우승자이자 〈흑백요리사〉 〈냉장고를 부탁해〉 등에 출연한 셰프 최강록의 자전적 에세이. 음식, 요리, 식당, 요리사라는 네 가지 키워드로 지난날과 지금의 일상을 담았다. 요리사라는 직업인으로서, 먹는 것을 좋아하는 평범한 생활인으로서 잔잔하면서도 솔직하게 써내려간 기쁨과 슬픔, 희망과 걱정이 독자들의 몰입과 공감을 높인다. 이 책 곳곳에 돋보이는 최강록 특유의 유머 사이에 가슴 찡한 장면들이 반짝인다. 이 진솔한 에세이를 읽다보면 음식과 요리란 무엇인지, 일과 직업이란 무슨 의미인지 생각해보게 될 것이다.〈마스터셰프 코리아2〉의 우승자이자 〈흑백요리사〉 〈냉장고를 부탁해〉 등에 출연한 셰프 최강록의 자전적 에세이. 음식, 요리, 식당, 요리사라는 네 가지 키워드로 지난날과 지금의 일상을 담았다. 요리사라는 직업인으로서, 먹는 것을 좋아하는 평범한 생활인으로서 잔잔하면서도 솔직하게 써내려간 기쁨과 슬픔, 희망과 걱정이 독자들의 몰입과 공감을 높인다. 이 책 곳곳에 돋보이는 최강록 특유의 유머 사이에 가슴 찡한 장면들이 반짝인다. 이 진솔한 에세이를 읽다보면 음식과 요리란 무엇인지, 일과 직업이란 무슨 의미인지 생각해보게 될 것이다.〈마스터셰프 코리아2〉의 우승자이자 〈흑백요리사〉 〈냉장고를 부탁해〉 등에 출연한 셰프 최강록의 자전적 에세이. 음식, 요리, 식당, 요리사라는 네 가지 키워드로 지난날과 지금의 일상을 담았다. 요리사라는 직업인으로서, 먹는 것을 좋아하는 평범한 생활인으로서 잔잔하면서도 솔직하게 써내려간 기쁨과 슬픔, 희망과 걱정이 독자들의 몰입과 공감을 높인다. 이 책 곳곳에 돋보이는 최강록 특유의 유머 사이에 가슴 찡한 장면들이 반짝인다. 이 진솔한 에세이를 읽다보면 음식과 요리란 무엇인지, 일과 직업이란 무슨 의미인지 생각해보게 될 것이다.〈마스터셰프 코리아2〉의 우승자이자 〈흑백요리사〉 〈냉장고를 부탁해〉 등에 출연한 셰프 최강록의 자전적 에세이. 음식, 요리, 식당, 요리사라는 네 가지 키워드로 지난날과 지금의 일상을 담았다. 요리사라는 직업인으로서, 먹는 것을 좋아하는 평범한 생활인으로서 잔잔하면서도 솔직하게 써내려간 기쁨과 슬픔, 희망과 걱정이 독자들의 몰입과 공감을 높인다. 이 책 곳곳에 돋보이는 최강록 특유의 유머 사이에 가슴 찡한 장면들이 반짝인다. 이 진솔한 에세이를 읽다보면 음식과 요리란 무엇인지, 일과 직업이란 무슨 의미인지 생각해보게 될 것이다.〈마스터셰프 코리아2〉의 우승자이자 〈흑백요리사〉 〈냉장고를 부탁해〉 등에 출연한 셰프 최강록의 자전적 에세이. 음식, 요리, 식당, 요리사라는 네 가지 키워드로 지난날과 지금의 일상을 담았다. 요리사라는 직업인으로서, 먹는 것을 좋아하는 평범한 생활인으로서 잔잔하면서도 솔직하게 써내려간 기쁨과 슬픔, 희망과 걱정이 독자들의 몰입과 공감을 높인다. 이 책 곳곳에 돋보이는 최강록 특유의 유머 사이에 가슴 찡한 장면들이 반짝인다. 이 진솔한 에세이를 읽다보면 음식과 요리란 무엇인지, 일과 직업이란 무슨 의미인지 생각해보게 될 것이다."
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (!books || !Array.isArray(books)) {
+        alert("books 데이터 로드 실패(books.js 경로/순서 확인)");
+        return;
     }
 
-    // 구매수량은 장바구니 기본값 1 (나중에 구매페이지에서 수정)
-    const cartItem = { ...book, qty: 1 };
-    items.push(cartItem);
+    const id = getBookIdFromUrl();
+    const book = getBookById(id);
 
-    setCartItems(items);
-    console.log("담김 성공:", items);
-}
+    if (!book) {
+        alert("존재하지 않는 상품입니다");
+        location.href = "../domestic/domestic.html";
+        return;
+    }
 
-function logCart() {
-    console.log("cartItems =", getCartItems());
-    console.log("raw =", localStorage.getItem(CART_KEY));
-}
+    render(book);
 
-document.getElementById("btnAddCart").addEventListener("click", () => {
-    addToCartOnce(testbook);
-    location.href = "../cart/cart.html";
+    // 장바구니 담기
+    document.getElementById("btnAddCart").addEventListener("click", () => {
+        const result = addToCartOnce(book);
+
+        // 이미 담김이면 여기서 메시지 줄 수도 있음
+        if (result.ok === false && result.reason === "EXISTS") {
+            // alert("이미 장바구니에 담긴 상품입니다");
+        }
+
+        const goCart = confirm("장바구니로 이동할까요?");
+        if (goCart) location.href = "../cart/cart.html";
+    });
+
+    // 구매하기
+    const buyBtn = document.getElementById("btnBuyNow");
+    if (buyBtn) {
+        buyBtn.addEventListener("click", () => {
+            alert("구매 완료");
+            location.href = "../myPage/myPage.html";
+        });
+    }
+
+    // TOP 버튼(기존 유지)
+    const toTopBtn = document.getElementById("toTopBtn");
+    window.addEventListener("scroll", () => {
+        toTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+    toTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 });
-// clearCart();
-// addToCartOnce(testbook);
-// logCart(); 
 
-
-// 맨 위로 이동하는 버튼
-const toTopBtn = document.getElementById("toTopBtn");
-
-// 스크롤하면 버튼 보이기
-window.addEventListener("scroll", () => {   // 페이지를 스크롤할 때마다 실행
-  if (window.scrollY > 300) {               // 300px 내려왔다면
-    toTopBtn.style.display = "block";       // 버튼 보이기
-  } else {
-    toTopBtn.style.display = "none";
-  }
-});
-
-// 클릭하면 맨 위로
-toTopBtn.addEventListener("click", () => {
-  window.scrollTo({   // 브라우저에게 명령
-    top: 0,
-    behavior: "smooth"
-  });
-});

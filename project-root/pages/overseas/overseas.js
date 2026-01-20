@@ -1,11 +1,11 @@
-// 베스트셀러 슬라이더
-const books = [
-  { title: "The Cafe on the Edge of the World", author: "존 스트레레키", desc: "이 책은 The Cafe on the Edge of the World임...", image: "../../assets/imgs/overseasImg/bestbook1.jpeg" },
-  { title: "Wonder (미국판) : 줄리아 로버츠 주연 영화 '원더' 원작 소설", author: "R. J. 팔라시오", desc: "이 책은 Wonder (미국판) : 줄리아 로버츠 주연 영화 '원더' 원작 소설임...", image: "../../assets/imgs/overseasImg/bestbook2.jpeg" },
-  { title: "スペシャルエディション(坂田銀時＆神威)", author: "소라치 히데아키", desc: "이 책은 スペシャルエディション(坂田銀時＆神威)임...", image: "../../assets/imgs/overseasImg/bestbook3.jpeg" },
-  { title: "The Giver 기억 전달자", author: "로이스 라우리", desc: "이 책은 The Giver 기억 전달자임...", image: "../../assets/imgs/overseasImg/bestbook4.jpeg" },
-  { title: "Because of Winn-Dixie", author: "DiCamillo, Kate", desc: "이 책은 Because of Winn-Dixie임...", image: "../../assets/imgs/overseasImg/bestbook5.jpeg" }
-];
+// 전역 데이터를 현재 파일에서 쓰기 쉽게 변수로 받음
+const books = window.books;     
+
+// books 배열에서 isBest === true, type === "overseas"인 책만 골라서 새 배열을 만듦
+const bestsellerBooks = books.filter(
+  book => book.isBest && book.type === "overseas"
+); 
+
 let currentIndex = 0;     // 현재 대표로 보여줄 베스트 도서의 인덱스
 
 const bestsellerBox = document.querySelector(".bestseller-box");
@@ -28,20 +28,24 @@ function renderBestseller() {
   const main = document.createElement("div");
   main.className = "bestseller-main";
 
-  // 클릭시 상세페이지 이동
-  main.addEventListener("click", () => {
-    location.href = "../detailPage/detailPage.html";
-  }); 
+  const mainBook = bestsellerBooks[currentIndex];     // 현재 인덱스의 책이 대표 도서
 
-  const mainBook = books[currentIndex];     // 현재 인덱스의 책이 대표 도서
+  // 메인 전용 구조 분해
+  const { id, title, author, image, shortDesc } = mainBook;
+
   main.innerHTML = `
-    <img src="${mainBook.image}" alt="${mainBook.title}">
+    <img src="${image}" alt="${title}">
     <div class="book-info">
-      <h3>${mainBook.title}</h3>
-      <p>${mainBook.author}</p>
-      <p>${mainBook.desc}</p>
+      <h3>${title}</h3>
+      <p>${author}</p>
+      <p>${shortDesc}</p>
     </div>
   `;     // currentIndex가 바뀌면 자동으로 다른 책이 메인에 표시됨 
+
+  // 클릭시 상세페이지 이동
+  main.addEventListener("click", () => {
+    location.href = `../detailPage/detailPage.html?id=${id}`;
+  });
 
 
   // 오른쪽 미리보기 도서
@@ -52,13 +56,13 @@ function renderBestseller() {
   preview.className = "bestseller-preview";
 
   for (let i = 1; i <= 3; i++) {    // 대표 도서 다음 순서부터 3권
-    const idx = (currentIndex + i) % books.length;
-    const book = books[idx];
+    const idx = (currentIndex + i) % bestsellerBooks.length;
+    const { image, title } = bestsellerBooks[idx];
 
     // 미리보기 카드 생성
     const card = document.createElement("div");
     card.className = "preview-card";
-    card.innerHTML = `<img src="${book.image}" alt="${book.title}">`;
+    card.innerHTML = `<img src="${image}" alt="${title}">`;
 
     // 미리보기 클릭 시 해당 책을 메인으로
     card.addEventListener("click", () => {
@@ -78,50 +82,25 @@ function renderBestseller() {
 
 // '다음','이전' 버튼 이벤트
 nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % books.length;
+  currentIndex = (currentIndex + 1) % bestsellerBooks.length;
   renderBestseller();
 });
 
 prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + books.length) % books.length;    // + books.length : 음수 방지용
+  currentIndex = (currentIndex - 1 + bestsellerBooks.length) % bestsellerBooks.length;    // + books.length : 음수 방지용
   renderBestseller();
 });
 
-renderBestseller();   // 페이지 로딩 시 첫 베스트 도서 바로 표시
+document.addEventListener("DOMContentLoaded", () => {
+  renderBestseller();
+});  // HTML이 모두 로딩된 뒤에 JS 실행하겠다는 의미
 
 
 // 책 목록 부분
 const categories = [
-  {
-    name: "문학 소설",
-    books: [
-      { title: "Hamnet", image: "../../assets/imgs/overseasImg/book1.jpeg" },
-      { title: "Cormoran Strike #08 : The Hallmarked Man", image: "../../assets/imgs/overseasImg/book2.jpeg" },
-      { title: "The Secret of Secrets", image: "../../assets/imgs/overseasImg/book3.jpeg" },
-      { title: "Not Quite Dead Yet", image: "../../assets/imgs/overseasImg/book4.jpeg" },
-      { title: "Katabasis", image: "../../assets/imgs/overseasImg/book5.jpeg" }
-    ]
-  },
-  {
-    name: "경제 경영",
-    books: [
-      { title: "Apple in China", image: "../../assets/imgs/overseasImg/book6.jpeg" },
-      { title: "How Countries Go Broke: The Big Cycle", image: "../../assets/imgs/overseasImg/book7.jpeg" },
-      { title: "The Nvidia Way : Jensen Huang and the Making of a Tech Giant", image: "../../assets/imgs/overseasImg/book8.jpeg" },
-      { title: "The Art of Laziness", image: "../../assets/imgs/overseasImg/book9.jpeg" },
-      { title: "What's Your Dream?", image: "../../assets/imgs/overseasImg/book10.jpeg" }
-    ]
-  },
-  {
-    name: "ELT 사전",
-    books: [
-      { title: "Bricks Listening High Beginner 1", image: "../../assets/imgs/overseasImg/book11.jpeg" },
-      { title: "Wordly Wise 3000 Grade 3", image: "../../assets/imgs/overseasImg/book12.jpeg" },
-      { title: "21st Century Reading Student Book 1", image: "../../assets/imgs/overseasImg/book13.jpg" },
-      { title: "Reading Explorer 1", image: "../../assets/imgs/overseasImg/book14.jpg" },
-      { title: "Oxford Picture Dictionary : English/Korean", image: "../../assets/imgs/overseasImg/book15.jpg" }
-    ]
-  }
+  { name: "문학 소설", key: "fiction" },
+  { name: "경제 경영", key: "economy" },
+  { name: "ELT 사전", key: "elt" }
 ];
 
 const container = document.getElementById("bookSections");
@@ -130,7 +109,7 @@ const container = document.getElementById("bookSections");
 categories.forEach(category => {    // categories 배열을 하나씩 순회. category 하나 = 하나의 섹션
   const section = document.createElement("section");
   section.className = "book-section content-box";
-  section.setAttribute("data-category", category.name);
+  section.setAttribute("data-category", category.name);   // 스크롤 이동용 연결고리
 
   // 섹션 헤더 만듦 (제목)
   const header = document.createElement("div");
@@ -146,26 +125,36 @@ categories.forEach(category => {    // categories 배열을 하나씩 순회. ca
   const list = document.createElement("div");
   list.className = "book-list";
 
-  category.books.forEach(book => {    // 책 하나하나 카드로 만듦
+  // 카테고리에 맞는 책만 필터링
+  const filteredBooks = books.filter(
+    book => book.category === category.key
+  );
+
+  filteredBooks.forEach(book => {
+
+    // 카드 전용 구조 분해
+    const { id, title, image } = book;
+
     // 책 카드 생성
     const card = document.createElement("div");
     card.className = "book-card";
 
-    // 클릭시 상세페이지 이동
-    card.addEventListener("click", () => {
-      location.href = "../detailPage/detailPage.html";
-    }) 
-
     // 책 이미지
     const img = document.createElement("img");
-    img.src = book.image;
+    img.src = image;
 
     // 책 제목
     const name = document.createElement("p");
     name.className = "book-name";
-    name.textContent = book.title;
+    name.textContent = title;
 
     card.append(img, name);
+
+    // 클릭시 상세페이지 이동
+    card.addEventListener("click", () => {
+      location.href = `../detailPage/detailPage.html?id=${id}`;
+    });
+
     list.appendChild(card);
   });
 
@@ -216,17 +205,10 @@ const toTopBtn = document.getElementById("toTopBtn");
 
 // 스크롤하면 버튼 보이기
 window.addEventListener("scroll", () => {   // 페이지를 스크롤할 때마다 실행
-  if (window.scrollY > 300) {               // 300px 내려왔다면
-    toTopBtn.style.display = "block";       // 버튼 보이기
-  } else {
-    toTopBtn.style.display = "none";
-  }
-});
+  toTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+});     // 300px 내려왔다면 버튼 보이기
 
 // 클릭하면 맨 위로
 toTopBtn.addEventListener("click", () => {
-  window.scrollTo({   // 브라우저에게 명령
-    top: 0,
-    behavior: "smooth"
-  });
-});
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});     // 브라우저에게 명령

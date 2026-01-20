@@ -4,78 +4,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>domestic-위아북스</title>
+  <title>국내도서-위아북스</title>
+
+  <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/imgs/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/imgs/favicon-32x32.png"
+    />
+
   <link rel="stylesheet" href="domestic.css">
   <link rel="stylesheet" href="../../assets/css/header.css">
-
 </head>
 
 <body>
 
-    <header class="site-header">
+  <header class="site-header">
 
-      <div class="logo">
-        <a href="../../index.html">
-          <img src="../../assets/imgs/mainLogo.png" alt="YES24 로고">
-        </a>
-      </div>
+    <div class="logo">
+      <a href="../../index.html">
+        <img src="../../assets/imgs/mainLogo.png" alt="위아북스 로고">
+      </a>
+    </div>
 
-      <div class="nav-wrap">
-        <nav class="nav-bar">
-          <a class="nav-link" href="../domestic/domestic.html">국내도서</a>
-          <a class="nav-link" href="../overseas/overseas.html">해외도서</a>
-          <a class="nav-link" href="../usedBook/usedBook.html">중고책</a>
-          <a class="nav-link" href="../eBook/eBook.html">ebook</a>
-        </nav>
-      </div>
+    <div class="nav-wrap">
+      <nav class="nav-bar">
+        <a class="nav-link" href="../domestic/domestic.html">국내도서</a>
+        <a class="nav-link" href="../overseas/overseas.html">해외도서</a>
+        <a class="nav-link" href="../usedBook/usedBook.html">중고책</a>
+        <a class="nav-link" href="../eBook/eBook.html">ebook</a>
+      </nav>
+    </div>
 
-      <div class="right-area">
-        <!-- 미로그인 -->
-        <button id="loginBtn" class="login-text-btn" type="button">로그인</button>
+    <div class="right-area">
+      <!-- 미로그인 -->
+      <button id="loginBtn" class="login-text-btn" type="button">로그인</button>
 
-        <!-- 로그인 후 -->
-        <div id="userMenu" class="user-menu is-hidden">
-          <span id="userHello" class="user-hello"></span>
-          <button id="logoutBtn" class="logout-btn" type="button">로그아웃</button>
+      <!-- 로그인 후 -->
+      <div id="userMenu" class="user-menu is-hidden">
+        <span id="userHello" class="user-hello"></span>
+        <button id="logoutBtn" class="logout-btn" type="button">로그아웃</button>
 
-          <div id="userIcons" class="right-icons">
-            <a id="myPageLink" class="icon-link" href="../myPage/myPage.html" aria-label="마이페이지">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M20 21a8 8 0 0 0-16 0" />
-              </svg>
-            </a>
+        <div id="userIcons" class="right-icons">
+          <a id="myPageLink" class="icon-link" href="../myPage/myPage.html" aria-label="마이페이지">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M20 21a8 8 0 0 0-16 0" />
+            </svg>
+          </a>
 
-            <a id="cartLink" class="icon-link" href="../cart/cart.html" aria-label="장바구니">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="9" cy="20" r="1" />
-                <circle cx="17" cy="20" r="1" />
-                <path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" />
-              </svg>
-            </a>
-          </div>
+          <a id="cartLink" class="icon-link" href="../cart/cart.html" aria-label="장바구니">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="20" r="1" />
+              <circle cx="17" cy="20" r="1" />
+              <path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" />
+            </svg>
+          </a>
         </div>
-      </div>
-    </header>
-
-    <!-- 로그인 모달 -->
-    <div id="loginModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
-      <div class="modal__overlay" id="loginModalOverlay"></div>
-
-      <div class="modal__content">
-        <div class="modal__header">
-          <h2 id="loginModalTitle">로그인</h2>
-          <button type="button" class="modal__close" id="loginModalClose" aria-label="닫기">✕</button>
-        </div>
-
-        <iframe id="loginFrame" class="modal__iframe" src="../login/login.html" title="로그인">
-        </iframe>
       </div>
     </div>
-    <script src="../../assets/js/header.js"></script>
-  
+  </header>
+
+  <!-- 로그인 모달 -->
+  <div id="loginModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+    <div class="modal__overlay" id="loginModalOverlay"></div>
+
+    <div class="modal__content">
+      <div class="modal__header">
+        <h2 id="loginModalTitle">로그인</h2>
+        <button type="button" class="modal__close" id="loginModalClose" aria-label="닫기">✕</button>
+      </div>
+
+      <iframe id="loginFrame" class="modal__iframe" src="../login/login.html" title="로그인">
+      </iframe>
+    </div>
+  </div>
+  <script src="../../assets/js/header.js"></script>
+
 
   <main class="site-main">
+
     <!-- 왼쪽 콘텐츠 -->
     <div class="page-layout">
       <div class="page-layout-inner">
@@ -88,6 +103,8 @@
 
         <!-- 오른쪽 콘텐츠 -->
         <div class="content-area">
+
+          <!-- 베스트셀러 박스 -->
           <section class="bestseller">
             <div class="bestseller-box content-box">
               <div class="bestseller-label">BEST 도서</div>
@@ -117,6 +134,7 @@
 
           <!-- 책 목록 -->
           <div id="bookSections"></div>
+          
         </div>
       </div>
     </div>
@@ -129,6 +147,7 @@
     <p>© 2026-2026 Team bootcamp. All rights reserved.</p>
   </footer>
 
+  <script src="../../assets/js/books.js"></script>
   <script src="domestic.js"></script>
 </body>
 
