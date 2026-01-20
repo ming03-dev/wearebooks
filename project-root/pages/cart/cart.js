@@ -66,7 +66,8 @@ if (!items.length) {
 
     // 이미지
     const c1 = row.insertCell();
-    c1.innerHTML = `<img src="${item.img}" class="bookImg img-fluid" />`;
+    const imgSrc = item.image || item.img || "";
+    c1.innerHTML = `<img src="${imgSrc}" class="bookImg img-fluid" alt="${item.title}" />`;
 
     // 상품 정보
     const c2 = row.insertCell();
