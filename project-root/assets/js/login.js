@@ -62,7 +62,7 @@ if (form) {
     if (window.parent && window.parent !== window) {
       window.parent.postMessage(
         { type: "LOGIN_SUCCESS", userId: found.id },
-        window.location.origin
+        "*"
       );
       return;
     }

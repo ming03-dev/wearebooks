@@ -66,7 +66,16 @@ function initHeader() {
   logoutBtn?.addEventListener("click", () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("loginUserId");
+
     renderHeaderUI();
+
+    if (location.protocol === "file:") {
+      // file:// 환경
+      location.href = "../../index.html";
+    } else {
+      // http:// 서버 환경
+      location.replace("/index.html");
+    }
   });
 
   // 보호 링크
@@ -81,14 +90,14 @@ function initHeader() {
 
   // iframe 로그인 성공 메시지 수신
   window.addEventListener("message", (event) => {
-    if (event.origin !== window.location.origin) return;
+    if (event.data?.type !== "LOGIN_SUCCESS") return;
 
-    if (event.data?.type === "LOGIN_SUCCESS") {
-      if (event.data.userId) localStorage.setItem("loginUserId", event.data.userId);
-
-      closeLoginModal();
-      renderHeaderUI();
+    if (event.data.userId) {
+      localStorage.setItem("loginUserId", event.data.userId);
     }
+
+    closeLoginModal();
+    renderHeaderUI();
   });
 
   renderHeaderUI();
