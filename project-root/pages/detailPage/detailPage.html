@@ -1,204 +1,250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title class="page-title"></title>
-    <link rel="stylesheet" href="detailPage.css">
-    <link rel="stylesheet" href="../../assets/css/header.css">
-    <link rel="icon" href="../../assets/imgs/icons/favicon.ico" />
+    <link rel="stylesheet" href="detailPage.css" />
+    <link rel="stylesheet" href="../../assets/css/header.css" />
+    <link rel="icon" href="../../assets/imgs/favicon.ico" />
     <script src="../../assets/js/books.js"></script>
     <script src="detailPage.js"></script>
-</head>
+  </head>
 
-<!-- header navbar -->
+  <!-- header navbar -->
 
-<body style="background-color: #f3f3f3;">
-    <header class="site-header" id="main" style="background-color: white;">
+  <body style="background-color: #f3f3f3">
+    <header class="site-header" id="main" style="background-color: white">
+      <div class="logo">
+        <a href="../../index.html">
+          <img src="../../assets/imgs/mainLogo.png" alt="위아북스 로고" />
+        </a>
+      </div>
 
-    <div class="logo">
-      <a href="../../index.html">
-        <img src="../../assets/imgs/mainLogo.png" alt="위아북스 로고">
-      </a>
-    </div>
+      <div class="nav-wrap">
+        <nav class="nav-bar">
+          <a class="nav-link" href="../domestic/domestic.html">국내도서</a>
+          <a class="nav-link" href="../overseas/overseas.html">해외도서</a>
+          <a class="nav-link" href="../usedBook/usedBook.html">중고책</a>
+          <a class="nav-link" href="../eBook/eBook.html">ebook</a>
+        </nav>
+      </div>
 
-    <div class="nav-wrap">
-      <nav class="nav-bar">
-        <a class="nav-link" href="../domestic/domestic.html">국내도서</a>
-        <a class="nav-link" href="../overseas/overseas.html">해외도서</a>
-        <a class="nav-link" href="../usedBook/usedBook.html">중고책</a>
-        <a class="nav-link" href="../eBook/eBook.html">ebook</a>
-      </nav>
-    </div>
+      <div class="right-area">
+        <!-- 미로그인 -->
+        <button id="loginBtn" class="login-text-btn" type="button">
+          로그인
+        </button>
 
-    <div class="right-area">
-      <!-- 미로그인 -->
-      <button id="loginBtn" class="login-text-btn" type="button">로그인</button>
+        <!-- 로그인 후 -->
+        <div id="userMenu" class="user-menu is-hidden">
+          <span id="userHello" class="user-hello"></span>
+          <button id="logoutBtn" class="logout-btn" type="button">
+            로그아웃
+          </button>
 
-      <!-- 로그인 후 -->
-      <div id="userMenu" class="user-menu is-hidden">
-        <span id="userHello" class="user-hello"></span>
-        <button id="logoutBtn" class="logout-btn" type="button">로그아웃</button>
+          <div id="userIcons" class="right-icons">
+            <a
+              id="myPageLink"
+              class="icon-link"
+              href="../myPage/myPage.html"
+              aria-label="마이페이지"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="8" r="4" />
+                <path d="M20 21a8 8 0 0 0-16 0" />
+              </svg>
+            </a>
 
-        <div id="userIcons" class="right-icons">
-          <a id="myPageLink" class="icon-link" href="../myPage/myPage.html" aria-label="마이페이지">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M20 21a8 8 0 0 0-16 0" />
-            </svg>
-          </a>
-
-          <a id="cartLink" class="icon-link" href="../cart/cart.html" aria-label="장바구니">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="9" cy="20" r="1" />
-              <circle cx="17" cy="20" r="1" />
-              <path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" />
-            </svg>
-          </a>
+            <a
+              id="cartLink"
+              class="icon-link"
+              href="../cart/cart.html"
+              aria-label="장바구니"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="9" cy="20" r="1" />
+                <circle cx="17" cy="20" r="1" />
+                <path
+                  d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- 로그인 모달 -->
-  <div id="loginModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
-    <div class="modal__overlay" id="loginModalOverlay"></div>
+    <!-- 로그인 모달 -->
+    <div
+      id="loginModal"
+      class="modal is-hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loginModalTitle"
+    >
+      <div class="modal__overlay" id="loginModalOverlay"></div>
 
-    <div class="modal__content">
-      <div class="modal__header">
-        <h2 id="loginModalTitle">로그인</h2>
-        <button type="button" class="modal__close" id="loginModalClose" aria-label="닫기">✕</button>
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 id="loginModalTitle">로그인</h2>
+          <button
+            type="button"
+            class="modal__close"
+            id="loginModalClose"
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+        </div>
+
+        <iframe
+          id="loginFrame"
+          class="modal__iframe"
+          src="../login/login.html"
+          title="로그인"
+        >
+        </iframe>
       </div>
-
-      <iframe id="loginFrame" class="modal__iframe" src="../login/login.html" title="로그인">
-      </iframe>
     </div>
-  </div>
-  <script src="../../assets/js/header.js"></script>
+    <script src="../../assets/js/header.js"></script>
 
     <!-- detailPage-main -->
     <main class="site-main">
-        <section class="product-grid">
-            <!-- 왼쪽: 책 이미지 -->
-            <div class="product-left card">
-                <div class="book-title-row" id="book-title">
-                    <h1 class="book-title"></h1>
+      <section class="product-grid">
+        <!-- 왼쪽: 책 이미지 -->
+        <div class="product-left card">
+          <div class="book-title-row" id="book-title">
+            <h1 class="book-title"></h1>
+          </div>
+          <div class="book-hero">
+            <img
+              class="book-cover"
+              src="../../assets/imgs/book1.jpg"
+              alt="책 표지"
+            />
+          </div>
+        </div>
 
-                </div>
-                <div class="book-hero">
-                    <img class="book-cover" src="../../assets/imgs/book1.jpg" alt="책 표지">
-                </div>
-            </div>
+        <!-- 오른쪽: 구매 박스 -->
+        <aside class="product-right card">
+          <h2 class="side-title"></h2>
+          <br />
+          <div class="side-author"></div>
+          <div class="side-category"></div>
+          <div><h3 class="side-price" style="color: chocolate"></h3></div>
+          <hr />
+          <div class="side-actions">
+            <button class="btn ghost" id="btnAddCart">장바구니 담기</button>
+            <button class="btn primary" id="btnBuyNow">구매하기</button>
+          </div>
+          <hr />
+          <div class="mini-info">
+            <ul>
+              <li>해외배송 가능</li>
+              <li>문화비소득공제 신청가능</li>
+              <li>배송안내 : 강원특별자치도 춘천시 한림대학길 1</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+      <!-- sub bar -->
+      <nav class="subnav" aria-label="본문 섹션 이동">
+        <div class="subnav-left">
+          <a href="#intro">소개</a>
+          <a href="#recommend">추천도서</a>
+          <a href="#review">리뷰</a>
+        </div>
+        <!--  -->
+        <div class="subnav-right">
+          <h3 class="subnavRprice" style="color: chocolate"></h3>
+          <button class="btn ghost" id="btnAddCartsubnav">장바구니 담기</button>
+          <button class="btn primary" id="btnBuyNowsubnav">구매하기</button>
+        </div>
+        <!--  -->
+      </nav>
 
-            <!-- 오른쪽: 구매 박스 -->
-            <aside class="product-right card">
-                <h2 class="side-title"></h2>
-                <br>
-                <div class="side-author"></div>
-                <div class="side-category"></div>
-                <div>가격 : <h3 class="side-price" style="color: chocolate;"></h3>
-                </div>
-                <hr>
-                <div class="side-actions">
-                    <button class="btn ghost" id="btnAddCart">장바구니 담기</button>
-                    <button class="btn primary" id="btnBuyNow">구매하기</button>
-                </div>
-                <hr>
-                <div class="mini-info">
-                    <ul>
-                        <li>해외배송 가능</li>
-                        <li>문화비소득공제 신청가능</li>
-                        <li>배송안내 : 강원특별자치도 춘천시 한림대학길 1</li>
-                    </ul>
-                </div>
-            </aside>
-        </section>
-        <!-- sub bar -->
-        <nav class="subnav" aria-label="본문 섹션 이동">
-            <div class="subnav-left">
-                <a href="#intro">소개</a>
-                <a href="#recommend">추천도서</a>
-                <a href="#review">리뷰</a>
-            </div>
-            <!--  -->
-            <div class="subnav-right">
-                <h3 class="subnavRprice" style="color: chocolate;"></h3>
-                <button class="btn ghost" id="btnAddCartsubnav">장바구니 담기</button>
-                <button class="btn primary" id="btnBuyNowsubnav">구매하기</button>
-            </div>
-            <!--  -->
+      <!-- 소개 -->
+      <section class="card block" id="intro">
+        <h3>소개</h3>
+        <hr />
+        <p class="muted"></p>
+        <!-- <img src="../../assets/imgs/detailPage_intro.jpg" style="margin: 50px;" > -->
+      </section>
 
-        </nav>
+      <!-- 추천 도서 -->
+      <section class="card block" id="recommend">
+        <div class="section-head">
+          <h2>추천 도서</h2>
+        </div>
 
-        <!-- 소개 -->
-        <section class="card block" id="intro">
-            <h3>소개</h3>
-            <hr>
-            <p class="muted"></p>
-            <!-- <img src="../../assets/imgs/detailPage_intro.jpg" style="margin: 50px;" > -->
-        </section>
+        <div class="reco-row" id="recoRow">
+          <a class="reco-card" href="#">
+            <img src="" />
+            <div class="reco-title"></div>
+          </a>
+          <a class="reco-card" href="#">
+            <img src="" />
+            <div class="reco-title"></div>
+          </a>
+          <a class="reco-card" href="#">
+            <img src="" />
+            <div class="reco-title"></div>
+          </a>
+          <a class="reco-card" href="#">
+            <img src="" />
+            <div class="reco-title"></div>
+          </a>
+          <a class="reco-card" href="#">
+            <img src="" />
+            <div class="reco-title"></div>
+          </a>
+        </div>
+      </section>
 
-        <!-- 추천 도서 -->
-        <section class="card block" id="recommend">
-            <div class="section-head">
-                <h2>추천 도서</h2>
-            </div>
+      <!-- 리뷰 -->
+      <section class="card block" id="review">
+        <div class="section-head">
+          <h2>리뷰</h2>
+        </div>
 
-            <div class="reco-row" id="recoRow">
-                <a class="reco-card" href="#">
-                    <img src="">
-                    <div class="reco-title"></div>
-                </a>
-                <a class="reco-card" href="#">
-                    <img src="">
-                    <div class="reco-title"></div>
-                </a>
-                <a class="reco-card" href="#">
-                    <img src="">
-                    <div class="reco-title"></div>
-                </a>
-                <a class="reco-card" href="#">
-                    <img src="">
-                    <div class="reco-title"></div>
-                </a>
-                <a class="reco-card" href="#">
-                    <img src="">
-                    <div class="reco-title"></div>
-                </a>
+        <div class="review-box">
+          <textarea
+            class="review-input"
+            placeholder="리뷰를 작성하세요"
+          ></textarea>
+          <button class="btn primary" id="btnReview">쓰기</button>
+        </div>
 
-            </div>
-        </section>
-
-        <!-- 리뷰 -->
-        <section class="card block" id="review">
-            <div class="section-head">
-                <h2>리뷰</h2>
-            </div>
-
-            <div class="review-box">
-                <textarea class="review-input" placeholder="리뷰를 작성하세요"></textarea>
-                <button class="btn primary" id="btnReview">쓰기</button>
-            </div>
-
-            <div class="review-list">
-                <div class="review-item">
-                    <div class="review-meta">홍길동</div>
-                    <div>생각보다 내용이 실용적임.</div>
-                </div>
-            </div>
-        </section>
+        <div class="review-list">
+          <div class="review-item">
+            <div class="review-meta">홍길동</div>
+            <div>생각보다 내용이 실용적임.</div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- 맨 위로 이동 버튼 -->
     <button id="toTopBtn" aria-label="맨 위로 이동">TOP</button>
 
     <!-- footer -->
-    <footer class="site-footer" style="background-color: white;margin: 0px;">
-        <p>© 2026-2026 Team bootcamp. All rights reserved.</p>
+    <footer class="site-footer" style="background-color: white; margin: 0px">
+      <p>© 2026-2026 Team bootcamp. All rights reserved.</p>
     </footer>
 
     <script src="detailPage.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,175 +1,228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../../assets/imgs/favicon.ico" />
-    <link rel="stylesheet" href="../myPage/myPage.css">
-    <link rel="stylesheet" href="../../assets/css/header.css">
-    <title>myPage-위아북스</title>
+    <link rel="stylesheet" href="../myPage/myPage.css" />
+    <link rel="stylesheet" href="../../assets/css/header.css" />
+    <title>마이페이지-위아북스</title>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <header class="site-header">
+      <div class="logo">
+        <a href="../../index.html">
+          <img src="../../assets/imgs/mainLogo.png" alt="YES24 로고" />
+        </a>
+      </div>
 
-        <div class="logo">
-            <a href="../../index.html">
-                <img src="../../assets/imgs/mainLogo.png" alt="YES24 로고">
+      <div class="nav-wrap">
+        <nav class="nav-bar">
+          <a class="nav-link" href="../domestic/domestic.html">국내도서</a>
+          <a class="nav-link" href="../overseas/overseas.html">해외도서</a>
+          <a class="nav-link" href="../usedBook/usedBook.html">중고책</a>
+          <a class="nav-link" href="../eBook/eBook.html">ebook</a>
+        </nav>
+      </div>
+
+      <div class="right-area">
+        <!-- 미로그인 -->
+        <button id="loginBtn" class="login-text-btn" type="button">
+          로그인
+        </button>
+
+        <!-- 로그인 후 -->
+        <div id="userMenu" class="user-menu is-hidden">
+          <span id="userHello" class="user-hello"></span>
+          <button id="logoutBtn" class="logout-btn" type="button">
+            로그아웃
+          </button>
+
+          <div id="userIcons" class="right-icons">
+            <a
+              id="myPageLink"
+              class="icon-link"
+              href="../myPage/myPage.html"
+              aria-label="마이페이지"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="8" r="4" />
+                <path d="M20 21a8 8 0 0 0-16 0" />
+              </svg>
             </a>
+
+            <a
+              id="cartLink"
+              class="icon-link"
+              href="../cart/cart.html"
+              aria-label="장바구니"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="9" cy="20" r="1" />
+                <circle cx="17" cy="20" r="1" />
+                <path
+                  d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
-
-        <div class="nav-wrap">
-            <nav class="nav-bar">
-                <a class="nav-link" href="../domestic/domestic.html">국내도서</a>
-                <a class="nav-link" href="../overseas/overseas.html">해외도서</a>
-                <a class="nav-link" href="../usedBook/usedBook.html">중고책</a>
-                <a class="nav-link" href="../eBook/eBook.html">ebook</a>
-            </nav>
-        </div>
-
-        <div class="right-area">
-            <!-- 미로그인 -->
-            <button id="loginBtn" class="login-text-btn" type="button">로그인</button>
-
-            <!-- 로그인 후 -->
-            <div id="userMenu" class="user-menu is-hidden">
-                <span id="userHello" class="user-hello"></span>
-                <button id="logoutBtn" class="logout-btn" type="button">로그아웃</button>
-
-                <div id="userIcons" class="right-icons">
-                    <a id="myPageLink" class="icon-link" href="../myPage/myPage.html" aria-label="마이페이지">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="8" r="4" />
-                            <path d="M20 21a8 8 0 0 0-16 0" />
-                        </svg>
-                    </a>
-
-                    <a id="cartLink" class="icon-link" href="../cart/cart.html" aria-label="장바구니">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="9" cy="20" r="1" />
-                            <circle cx="17" cy="20" r="1" />
-                            <path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
+      </div>
     </header>
 
     <!-- 로그인 모달 -->
-    <div id="loginModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
-        <div class="modal__overlay" id="loginModalOverlay"></div>
+    <div
+      id="loginModal"
+      class="modal is-hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loginModalTitle"
+    >
+      <div class="modal__overlay" id="loginModalOverlay"></div>
 
-        <div class="modal__content">
-            <div class="modal__header">
-                <h2 id="loginModalTitle">로그인</h2>
-                <button type="button" class="modal__close" id="loginModalClose" aria-label="닫기">✕</button>
-            </div>
-
-            <iframe id="loginFrame" class="modal__iframe" src="../login/login.html" title="로그인">
-            </iframe>
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 id="loginModalTitle">로그인</h2>
+          <button
+            type="button"
+            class="modal__close"
+            id="loginModalClose"
+            aria-label="닫기"
+          >
+            ✕
+          </button>
         </div>
+
+        <iframe
+          id="loginFrame"
+          class="modal__iframe"
+          src="../login/login.html"
+          title="로그인"
+        >
+        </iframe>
+      </div>
     </div>
     <script src="../../assets/js/header.js"></script>
 
     <main class="site-main">
-    <div class="page">
+      <div class="page">
         <div class="mypage-topbar">
-            <div class="title">마이페이지</div>
-            <div class="msg">“반갑습니다! 오늘도 즐거운 쇼핑 되세요 :)”</div>
-            <div style="font-size:12px; color:#0b6a86; font-weight:800;"> </div>
+          <div class="title">마이페이지</div>
+          <div class="msg">“반갑습니다! 오늘도 즐거운 쇼핑 되세요 :)”</div>
+          <div style="font-size: 12px; color: #0b6a86; font-weight: 800"></div>
         </div>
 
         <div class="content">
-            <aside class="side">
-                <ul class="menu">
-                    <li><a class="active" href="../myPage/myPage.html">주문내역/배송조회</a></li>
-                    <li><a href="#" onclick="return false;">나의 문의 내역</a></li>
-                    <li><a href="#" onclick="return false;">멤버십 포인트</a></li>
-                    <li><a href="#" onclick="return false;">고객센터</a></li>
-                    <li><a>회원정보</a>
-                        <ul class="submenu">
-                            <li><a href="./memberInfo.html">- 회원정보 변경</a></li>
-                            <li><a href="#" onclick="return false;">- 비밀번호 변경</a></li>
-                        </ul>
-                    </li>
+          <aside class="side">
+            <ul class="menu">
+              <li>
+                <a class="active" href="../myPage/myPage.html"
+                  >주문내역/배송조회</a
+                >
+              </li>
+              <li><a href="#" onclick="return false;">나의 문의 내역</a></li>
+              <li><a href="#" onclick="return false;">멤버십 포인트</a></li>
+              <li><a href="#" onclick="return false;">고객센터</a></li>
+              <li>
+                <a>회원정보</a>
+                <ul class="submenu">
+                  <li><a href="./memberInfo.html">- 회원정보 변경</a></li>
+                  <li>
+                    <a href="#" onclick="return false;">- 비밀번호 변경</a>
+                  </li>
                 </ul>
-            </aside>
+              </li>
+            </ul>
+          </aside>
 
-            <section class="main">
-                <h2>최근 주문내역</h2>
+          <section class="main">
+            <h2>최근 주문내역</h2>
 
-                <div class="table-wrap">
-                    <table aria-label="주문내역 테이블">
-                        <thead>
-                            <tr>
-                                <th style="width:90px;">책 이미지</th>
-                                <th style="width:90px;">책 ID</th>
-                                <th style="width:110px;">가격</th>
-                                <th>제목</th>
-                                <th style="width:120px;">작가</th>
-                                <th style="width:80px;">수량</th>
-                                <th style="width:110px;">주문상태</th>
-                                <th style="width:110px;">조회</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ordersTbody"></tbody>
-                    </table>
-                </div>
-                <div id="pagination" class="pagination-wrap"></div>
-            </section>
+            <div class="table-wrap">
+              <table aria-label="주문내역 테이블">
+                <thead>
+                  <tr>
+                    <th style="width: 90px">책 이미지</th>
+                    <th style="width: 90px">책 ID</th>
+                    <th style="width: 110px">가격</th>
+                    <th>제목</th>
+                    <th style="width: 120px">작가</th>
+                    <th style="width: 80px">수량</th>
+                    <th style="width: 110px">주문상태</th>
+                    <th style="width: 110px">조회</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTbody"></tbody>
+              </table>
+            </div>
+            <div id="pagination" class="pagination-wrap"></div>
+          </section>
         </div>
-    </div>
+      </div>
 
-    <!-- 배송조회 팝업 -->
-    <div class="track-modal-backdrop" id="trackModal" data-open="false" role="dialog" aria-modal="true"
-        aria-label="배송조회 팝업">
+      <!-- 배송조회 팝업 -->
+      <div
+        class="track-modal-backdrop"
+        id="trackModal"
+        data-open="false"
+        role="dialog"
+        aria-modal="true"
+        aria-label="배송조회 팝업"
+      >
         <div class="track-modal" tabindex="-1">
-            <div class="modal-header">
-                <strong>배송조회</strong>
-                <button class="close" type="button" id="closeBtn" aria-label="닫기">✕</button>
+          <div class="modal-header">
+            <strong>배송조회</strong>
+            <button class="close" type="button" id="closeBtn" aria-label="닫기">
+              ✕
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="kv">
+              <div class="k">주문번호</div>
+              <div class="v" id="mOrder">-</div>
+              <div class="k">주문일자</div>
+              <div class="v" id="mDate">-</div>
+              <div class="k">도서명</div>
+              <div class="v" id="mBook">-</div>
+              <div class="k">수량</div>
+              <div class="v" id="mQty">-</div>
+              <div class="k">상태</div>
+              <div class="v" id="mStatus">-</div>
             </div>
 
-            <div class="modal-body">
-                <div class="kv">
-                    <div class="k">주문번호</div>
-                    <div class="v" id="mOrder">-</div>
-                    <div class="k">주문일자</div>
-                    <div class="v" id="mDate">-</div>
-                    <div class="k">도서명</div>
-                    <div class="v" id="mBook">-</div>
-                    <div class="k">수량</div>
-                    <div class="v" id="mQty">-</div>
-                    <div class="k">상태</div>
-                    <div class="v" id="mStatus">-</div>
-                </div>
-
-                <div class="track">
-                    <p>배송 단계 (예시)</p>
-                    <ul>
-                        <li>상품 준비중</li>
-                        <li>배송 출발</li>
-                        <li>배송중</li>
-                        <li>배송 완료</li>
-                    </ul>
-                </div>
+            <div class="track">
+              <p>배송 단계 (예시)</p>
+              <ul>
+                <li>상품 준비중</li>
+                <li>배송 출발</li>
+                <li>배송중</li>
+                <li>배송 완료</li>
+              </ul>
             </div>
+          </div>
         </div>
-    </div>
-</main>
+      </div>
+    </main>
     <footer class="site-footer">
-        <p>© 2026-2026 Team bootcamp. All rights reserved.</p>
-      </footer>
-
+      <p>© 2026-2026 Team bootcamp. All rights reserved.</p>
+    </footer>
 
     <script src="myPage.js"></script>
     <script src="../../assets/js/store.js"></script>
     <div class="toast" id="toast" aria-live="polite"></div>
-
-
-</body>
-
+  </body>
 </html>
