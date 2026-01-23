@@ -21,6 +21,8 @@ function initHeader() {
     return Boolean(localStorage.getItem("accessToken"));
   }
 
+  window.isLoggedIn = isLoggedIn;
+
   function getUserId() {
     return localStorage.getItem("loginUserId") || "";
   }

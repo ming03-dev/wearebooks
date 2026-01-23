@@ -145,46 +145,68 @@ document.addEventListener("DOMContentLoaded", () => {
   // leftbox
   // 장바구니 담기
   document.getElementById("btnAddCart").addEventListener("click", () => {
-    const result = addToCartOnce(book);
+    if (isLoggedIn() == false) {
+      alert("로그인을 해주세요");
+    } else {
+      const result = addToCartOnce(book);
 
-    // 이미 담김이면 여기서 메시지 줄 수도 있음
-    if (result.ok === false && result.reason === "EXISTS") {
-      alert("이미 장바구니에 담긴 상품입니다");
+      // 이미 담김이면 여기서 메시지 줄 수도 있음
+      if (result.ok === false && result.reason === "EXISTS") {
+        alert("이미 장바구니에 담긴 상품입니다");
+      }
+
+      const goCart = confirm("장바구니로 이동할까요?");
+      if (goCart) location.href = "../cart/cart.html";
     }
 
-    const goCart = confirm("장바구니로 이동할까요?");
-    if (goCart) location.href = "../cart/cart.html";
   });
 
   // 구매하기
   const buyBtn = document.getElementById("btnBuyNow");
+
+
   if (buyBtn) {
     buyBtn.addEventListener("click", () => {
-      alert("구매 완료");
-      location.href = "../myPage/myPage.html";
+      if (isLoggedIn() == false) {
+        alert("로그인을 해주세요");
+      } else {
+        alert("구매 완료");
+        location.href = "../myPage/myPage.html";
+      }
+
     });
   }
 
   // subnav
   // 장바구니 담기
   document.getElementById("btnAddCartsubnav").addEventListener("click", () => {
-    const result = addToCartOnce(book);
+    if (isLoggedIn() == false) {
+      alert("로그인을 해주세요");
+    } else {
+      const result = addToCartOnce(book);
 
-    // 이미 담김이면 여기서 메시지 줄 수도 있음
-    if (result.ok === false && result.reason === "EXISTS") {
-      alert("이미 장바구니에 담긴 상품입니다");
+      // 이미 담김이면 여기서 메시지 줄 수도 있음
+      if (result.ok === false && result.reason === "EXISTS") {
+        alert("이미 장바구니에 담긴 상품입니다");
+      }
+
+      const goCart = confirm("장바구니로 이동할까요?");
+      if (goCart) location.href = "../cart/cart.html";
     }
 
-    const goCart = confirm("장바구니로 이동할까요?");
-    if (goCart) location.href = "../cart/cart.html";
   });
 
   // 구매하기
   const buyBtnsubnav = document.getElementById("btnBuyNowsubnav");
   if (buyBtnsubnav) {
     buyBtnsubnav.addEventListener("click", () => {
-      alert("구매 완료");
-      location.href = "../myPage/myPage.html";
+      if (isLoggedIn() == false) {
+        alert("로그인을 해주세요");
+      } else {
+        alert("구매 완료");
+        location.href = "../myPage/myPage.html";
+      }
+
     });
   }
 
